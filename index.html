@@ -32,9 +32,52 @@
         <a href="resume.pdf" download class="btn">Download Resume</a>
         <a href="https://github.com/jodielzy" target="_blank" class="btn">Github</a>
         <a href="https://linkedin.com/in/jodie-lim-5a3023277" target="_blank" class="btn">LinkedIn</a>
-        <a href="mailto:jodielimzhuoying@gmail.com" class="btn">Email</a>
+        <a href="mailto:jodielimzhuoying@gmail.com" id="emailLink" class="btn">Email</a>
+
+            <div id="emailFallbackModal" class="modal">
+            <div class="modal-content">
+              <span class="close-btn">&times;</span>
+              <p>You don’t appear to have a default email client configured.</p>
+              <p>Please copy my email: <strong>jodielimzhuoying@gmail.com</strong></p>
+            </div>
+          </div>
       </div>
     </section>
   </main>
 </body>
+
+<script>
+    // Get elements
+    const emailLink = document.getElementById('emailLink');
+    const modal = document.getElementById('emailFallbackModal');
+    const closeBtn = document.querySelector('.close-btn');
+  
+    // Intercept click event
+    emailLink.addEventListener('click', function(event) {
+      // Attempt to open mailto link by setting window.location
+      window.location.href = emailLink.href;
+  
+      // Set a timer as fallback – if no email client is triggered, show modal after 1 second
+      setTimeout(() => {
+        // Show fallback modal
+        modal.style.display = 'block';
+      }, 1000);
+  
+      // Prevent default behavior to allow our fallback to work (optional based on your needs)
+      event.preventDefault();
+    });
+  
+    // Close modal when user clicks the close button
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+  
+    // Optionally close modal when clicking outside modal content
+    window.addEventListener('click', function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+  
 </html>
