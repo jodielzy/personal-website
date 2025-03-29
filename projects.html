@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects | Jodie</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <a href="index.html" class="home-link">Jodie</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="projects.html">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <h1>My Projects</h1>
+  
+    <div class="project-slide visible">
+        <div class="project-content">
+          <div class="project-text">
+            <h2>ShortcAt - Hack&Roll 2024</h2>
+            <p style="text-align: justify;">We built a game, targetted at elderly and children to teach them 
+                about keyboard shortcuts on Windows. 
+                <br><br>
+                Features:<br> 
+                - tutorial which has the UI of a computer screen<br>
+                - typeracer style competition which allow users to compete who is best at shortcuts. 
+                <br><br>
+                Used:<br>
+                - Python, JavaScript, HTML, CSS, Websockets
+            </p>
+            <a href="https://github.com/jodielzy/hacknroll2025" target="_blank">View on GitHub</a>
+          </div>
+          <div class="project-gallery">
+            <div class="carousel-images">
+              <img src="images/shortcat_home.png" class="carousel-img active" alt="Screenshot 1">
+              <img src="images/shortcat_tutorial.png" class="carousel-img" alt="Screenshot 2">
+              <img src="images/shortcat_race.png" class="carousel-img" alt="Screenshot 3">
+            </div>
+            <div class="carousel-dots">
+              <span class="dot active" onclick="switchImage(this, 0)"></span>
+              <span class="dot" onclick="switchImage(this, 1)"></span>
+              <span class="dot" onclick="switchImage(this, 2)"></span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-controls">
+          <button class="nav-arrow" onclick="changeProject(-1)">&#8592;</button>
+          <button class="nav-arrow" onclick="changeProject(1)">&#8594;</button>
+        </div>
+    </div>
+      
+    <div class="project-slide visible">
+        <div class="project-content">
+          <div class="project-text">
+            <h2>SwiftSurf - PSA CodeSprint 2024</h2>
+            <p style="text-align: justify;">We built a portal that keeps track of vessels locations and predicts the arrival time
+                of vessels at PSA ports, considering different factors such as weather conditions and social unrest.
+                <br><br>
+                Features:<br> 
+                - Vessel-to-Port Data Exchange to keep track of arrival timings<br>
+                - Port-to-Port Communication to predict the status of vessels<br>
+                - Berth Allocation portal to optimize the process of allocation berths to arriving vessels 
+                <br><br>
+                Used:<br>
+                - Flask, OpenWeather API, Pandas, Geopy
+            </p>
+            <a href="https://github.com/jodielzy/PSA-CodeSprint" target="_blank">View on GitHub</a>
+          </div>
+          <div class="project-gallery">
+            <div class="carousel-images">
+              <img src="images/vessel4.png" class="carousel-img active" alt="Screenshot 1">
+              <img src="images/vessel3.png" class="carousel-img" alt="Screenshot 2">
+              <img src="images/vessel1.png" class="carousel-img" alt="Screenshot 3">
+              <img src="images/vessel2.png" class="carousel-img" alt="Screenshot 4">
+            </div>
+            <div class="carousel-dots">
+              <span class="dot active" onclick="switchImage(this, 0)"></span>
+              <span class="dot" onclick="switchImage(this, 1)"></span>
+              <span class="dot" onclick="switchImage(this, 2)"></span>
+              <span class="dot" onclick="switchImage(this, 3)"></span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-controls">
+          <button class="nav-arrow" onclick="changeProject(-1)">&#8592;</button>
+          <button class="nav-arrow" onclick="changeProject(1)">&#8594;</button>
+        </div>
+    </div>
+
+    <div class="project-slide visible">
+        <div class="project-content">
+          <div class="project-text">
+            <h2>Strategic Patrols, Safer Streets, LifeHack 2024</h2>
+            <p style="text-align: justify;"> My team created a webpage to present our solutions for crime hotspot analysis 
+                and optimizing patrol routes. We analysed crime occurence in Atlantis using a dataset found on Kaggle.
+                <br><br>
+                Features:<br> 
+                - Heatmap to analyse crime hotspots<br>
+                - Optimal patrol routes generated using Ant Colony Optimization Algorithm<br>
+                - Prediction of crime occurence using Decision Tree, considering weather conditions and past occurence rate
+                <br><br>
+                Used:<br>
+                - Flask, R, Shiny-R, K-means Clustering, Decision Tree
+            </p>
+            <a href="https://github.com/zining2004/Lifehack-2024" target="_blank">View on GitHub</a>
+          </div>
+          <div class="project-gallery">
+            <div class="carousel-images">
+              <img src="images/lifehack1.png" class="carousel-img active" alt="Screenshot 1">
+              <img src="images/lifehack2.png" class="carousel-img" alt="Screenshot 2">
+              <img src="images/lifehack3.png" class="carousel-img" alt="Screenshot 3">
+            </div>
+            <div class="carousel-dots">
+              <span class="dot active" onclick="switchImage(this, 0)"></span>
+              <span class="dot" onclick="switchImage(this, 1)"></span>
+              <span class="dot" onclick="switchImage(this, 2)"></span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-controls">
+          <button class="nav-arrow" onclick="changeProject(-1)">&#8592;</button>
+          <button class="nav-arrow" onclick="changeProject(1)">&#8594;</button>
+        </div>
+    </div>
+
+    <div class="project-slide visible">
+        <div class="project-content">
+          <div class="project-text">
+            <h2>TikToken, TikTok TechJam 2024</h2>
+            <p style="text-align: justify;"> My team built an e-commerce platform to present our solutions 
+                for online shopping without a bank account. We propose kiosk stations which allows users to top-up their credits
+                using cash. 
+                <br><br>
+                Features:<br> 
+                - Options for both online payment, or payment by kiosk machines<br>
+                - Currency exchange to a common currency, Tiktoken, to allow convenient international transactions<br>
+                - Credits transfer to other users using the username and a generated pin for security purposes
+                <br><br>
+                Used:<br>
+                - Flask, SQLite, HTML, CSS
+            </p>
+            <a href="https://github.com/zining2004/TikTok-TechJam-2024" target="_blank">View on GitHub</a>
+          </div>
+          <div class="project-gallery">
+            <div class="carousel-images">
+              <img src="images/tiktok1.png" class="carousel-img active" alt="Screenshot 1">
+              <img src="images/tiktok2.png" class="carousel-img" alt="Screenshot 2">
+              <img src="images/tiktok3.png" class="carousel-img" alt="Screenshot 3">
+              <img src="images/tiktok4.png" class="carousel-img" alt="Screenshot 4">
+            </div>
+            <div class="carousel-dots">
+              <span class="dot active" onclick="switchImage(this, 0)"></span>
+              <span class="dot" onclick="switchImage(this, 1)"></span>
+              <span class="dot" onclick="switchImage(this, 2)"></span>
+              <span class="dot" onclick="switchImage(this, 3)"></span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-controls">
+          <button class="nav-arrow" onclick="changeProject(-1)">&#8592;</button>
+          <button class="nav-arrow" onclick="changeProject(1)">&#8594;</button>
+        </div>
+    </div>
+
+    <div class="project-slide visible">
+        <div class="project-content">
+          <div class="project-text">
+            <h2>Piggy Bank, Expense Tracker Bot</h2>
+            <p style="text-align: justify;"> I built a telegram bot to keep track of my own expenses.
+                <br><br>
+                Features:<br> 
+                - Keep track of spendings and savings<br>
+                - Shows summary of every month's transactions<br>
+                - Categorize by accounts
+                <br><br>
+                Used:<br>
+                - Python, BotFather, Telegram API, SQLite
+            </p>
+            <a href="https://github.com/jodielzy/expense_tracker_bot" target="_blank">View on GitHub</a>
+          </div>
+          <div class="project-gallery">
+            <div class="carousel-images">
+              <img src="images/bot1.png" class="carousel-img active" alt="Screenshot 1">
+            </div>
+          </div>
+        </div>
+        <div class="arrow-controls">
+          <button class="nav-arrow" onclick="changeProject(-1)">&#8592;</button>
+          <button class="nav-arrow" onclick="changeProject(1)">&#8594;</button>
+        </div>
+    </div>
+
+    </div>
+  </main>  
+</body>
+    <script>
+        let currentProject = 0;
+        const slides = document.querySelectorAll(".project-slide");
+    
+        function showProject(index) {
+        slides.forEach(slide => slide.classList.remove("visible"));
+        slides[index].classList.add("visible");
+        }
+    
+        function changeProject(direction) {
+        currentProject = (currentProject + direction + slides.length) % slides.length;
+        showProject(currentProject);
+        }
+    
+        // optional: show first project on load
+        showProject(currentProject);
+  </script>  
+</html>
+
+<script>
+    function switchImage(dot, index) {
+      const gallery = dot.closest('.project-gallery');
+      const images = gallery.querySelectorAll('.carousel-img');
+      const dots = gallery.querySelectorAll('.dot');
+  
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+  
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', d === dot);
+      });
+    }
+</script>
+  
