@@ -4,70 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jodie | Personal Website</title>
+  <!-- Import aesthetic font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-          <div class="nav-logo">
-            <a href="index.html" class="home-link">Jodie</a>
-          </div>
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="education.html">Education</a></li>
-            <li><a href="resume.html">Resume</a></li>
-            <li><a href="projects.html">Projects</a></li>
-          </ul>          
-        </nav>
-      </header>
-      
+  <!-- Background overlay for a soft pastel look -->
+  <div class="background-overlay"></div>
 
+  <header>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <a href="index.html" class="home-link">Jodie</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="projects.html">Projects</a></li>
+      </ul>          
+    </nav>
+  </header>
+  
   <main class="main-content">
     <section class="intro">
       <h1>Hi, I'm Jodie! 👋</h1>
       <p>
         I'm passionate about emerging technology and cybersecurity, with a knack for turning ideas into real-world solutions through code. Using a range of programming languages and frameworks, I enjoy building projects that are both innovative and impactful.
       </p>
-      <div class="buttons">
+      <div>
         <a href="resume.pdf" download class="btn">Download Resume</a>
         <a href="https://github.com/jodielzy" target="_blank" class="btn">Github</a>
         <a href="https://linkedin.com/in/jodie-lim-5a3023277" target="_blank" class="btn">LinkedIn</a>
         <a href="mailto:jodielimzhuoying@gmail.com" id="emailLink" class="btn">Email</a>
-
-            <div id="emailFallbackModal" class="modal">
-            <div class="modal-content">
-              <span class="close-btn">&times;</span>
-              <p>You don’t appear to have a default email client configured.</p>
-              <p>Please copy my email: <strong>jodielimzhuoying@gmail.com</strong></p>
-            </div>
+        <!-- Fallback modal if no email client is configured -->
+        <div id="emailFallbackModal" class="modal">
+          <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <p>You don’t appear to have a default email client configured.</p>
+            <p>Please copy my email: <strong>jodielimzhuoying@gmail.com</strong></p>
           </div>
+        </div>
       </div>
     </section>
   </main>
-</body>
 
-<script>
-    // Get elements
+  <script>
+    // Get elements for email fallback
     const emailLink = document.getElementById('emailLink');
     const modal = document.getElementById('emailFallbackModal');
     const closeBtn = document.querySelector('.close-btn');
   
-    // Intercept click event
+    // Intercept click event on email link
     emailLink.addEventListener('click', function(event) {
-      // Attempt to open mailto link by setting window.location
+      // Attempt to open mailto link
       window.location.href = emailLink.href;
   
-      // Set a timer as fallback – if no email client is triggered, show modal after 1 second
+      // Set a fallback timer (1 second) to show modal if nothing happens
       setTimeout(() => {
-        // Show fallback modal
         modal.style.display = 'block';
       }, 1000);
   
-      // Prevent default behavior to allow our fallback to work (optional based on your needs)
       event.preventDefault();
     });
   
-    // Close modal when user clicks the close button
+    // Close modal on clicking close button
     closeBtn.addEventListener('click', function() {
       modal.style.display = 'none';
     });
@@ -79,5 +80,5 @@
       }
     });
   </script>
-  
+</body>
 </html>
