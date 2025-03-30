@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jodie | Personal Website</title>
-  <!-- Import aesthetic font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -32,17 +32,17 @@
       <p>
         I'm passionate about emerging technology and cybersecurity, with a knack for turning ideas into real-world solutions through code. Using a range of programming languages and frameworks, I enjoy building projects that are both innovative and impactful.
       </p>
-      <div>
-        <a href="resume.pdf" download class="btn">Download Resume</a>
+      <div class = "buttons">
+        <a href="resume.pdf" download class="btn">
+            <i class="bi bi-download"></i> Download Resume
+        </a>          
         <a href="https://github.com/jodielzy" target="_blank" class="btn">Github</a>
         <a href="https://linkedin.com/in/jodie-lim-5a3023277" target="_blank" class="btn">LinkedIn</a>
         <a href="mailto:jodielimzhuoying@gmail.com" id="emailLink" class="btn">Email</a>
-        <!-- Fallback modal if no email client is configured -->
         <div id="emailFallbackModal" class="modal">
           <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <p>You don’t appear to have a default email client configured.</p>
-            <p>Please copy my email: <strong>jodielimzhuoying@gmail.com</strong></p>
+            <p>Reach out to me at: <strong>jodielimzhuoying@gmail.com</strong></p>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
       // Set a fallback timer (1 second) to show modal if nothing happens
       setTimeout(() => {
         modal.style.display = 'block';
-      }, 1000);
+      }, 2000);
   
       event.preventDefault();
     });
