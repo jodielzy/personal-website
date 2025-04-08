@@ -24,61 +24,114 @@
   </header>
 
   <main class="main-content">
-    <section class = intro>
-    <h1>My Resume</h1>
-  
-    <div class="resume-container">
-      <div class="resume-sidebar">
-        <button class="tab-button active" onclick="showSection('about')">About Me</button>
-        <button class="tab-button" onclick="showSection('skills')">Skills</button>
-        <button class="tab-button" onclick="showSection('achievements')">Achievements</button>
-        <a href="resume.pdf" download class="btn small-btn">
+    <section class="intro">
+      <h1>My Resume</h1>
+
+      <div class="resume-container">
+        <div class="resume-sidebar">
+          <button class="tab-button active" onclick="showSection('about')">About Me</button>
+          <button class="tab-button" onclick="showSection('skills')">Skills</button>
+          <button class="tab-button" onclick="showSection('achievements')">Achievements</button>
+          <a href="resume.pdf" download class="btn small-btn">
             <i class="bi bi-download"></i> Download Resume
-        </a>            
-      </div>
-  
-      <div class="resume-content">
-        <div id="about" class="resume-section visible">
-          <h2>About Me</h2>
-          <p>I enjoy solving complex problems and bringing creative ideas to life. Whether it’s building tools, learning about cybersecurity, or collaborating on innovative projects, I strive to make an impact through code.</p>
+          </a>
         </div>
-  
-        <div id="skills" class="resume-section">
-          <h2>Skills</h2>
-          <ul>
-            <li>Programming: C, C++, Python, Java, HTML, CSS, JavaScript</li>
-            <li>Frameworks: Flask</li>
-            <li>Tools: Git, Docker, Linux</li>
-            <li>Cybersecurity: Wireshark, Burp Suite, GDB, Ghidra</li>
-          </ul>
-        </div>
-  
-        <div id="achievements" class="resume-section">
-          <h2>Achievements</h2>
-          <ul>
-            <li><strong>LifeHack 2024 (Top 10 Finalists)</strong> – Organised by NUS Computing Club</li>
-            <li><strong>PSA CodeSprint 2024 (Top 15 Finalists)</strong> – Organised by Port of Singapore Authority (PSA)</li>
-            <li><strong>Data Decades: 80's Hits Parade (Top 5 Finalists)</strong> - Organised by NUS Statistics & Data Science Society</li>
-            <li><strong>Brainhack 2024 Cyber Defenders Discovery Camp</strong> - Organised by Defence Science and Technology Agency (DSTA)</li>
-          </ul>
+
+        <div class="resume-content">
+          <div id="about" class="resume-section visible">
+            <h2>About Me</h2>
+            <p>I enjoy solving complex problems and bringing creative ideas to life. Whether it’s building tools, learning about cybersecurity, or collaborating on innovative projects, I strive to make an impact through code.</p>
+          </div>
+
+          <div id="skills" class="resume-section">
+            <h2>Skills</h2>
+            <ul>
+              <li>Programming: C, C++, Python, Java, HTML, CSS, JavaScript</li>
+              <li>Frameworks: Flask</li>
+              <li>Tools: Git, Docker, Linux</li>
+              <li>Cybersecurity: Wireshark, Burp Suite, GDB, Ghidra</li>
+            </ul>
+          </div>
+
+          <div id="achievements" class="resume-section">
+            <h2>Achievements</h2>
+            <ul>
+              <li><strong>LifeHack 2024 (Top 10 Finalists)</strong> – Organised by NUS Computing Club</li>
+              <li><strong>PSA CodeSprint 2024 (Top 15 Finalists)</strong> – Organised by Port of Singapore Authority (PSA)</li>
+              <li><strong>Data Decades: 80's Hits Parade (Top 5 Finalists)</strong> - Organised by NUS Statistics & Data Science Society</li>
+              <li><strong>Brainhack 2024 Cyber Defenders Discovery Camp</strong> - Organised by Defence Science and Technology Agency (DSTA)</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
-  </main>  
-</body>
-    <script>
-        function showSection(sectionId) {
+  </main>
+
+  <!-- Page transition blocks -->
+  <div class="page-transition enter">
+    <div class="block block1"></div>
+    <div class="block block2"></div>
+    <div class="block block3"></div>
+    <div class="block block4"></div>
+    <div class="block block5"></div>
+  </div>
+
+  <!-- ✅ JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const transition = document.querySelector('.page-transition');
+  
+      // Entry animation (blocks slide upward)
+      setTimeout(() => {
+        if (transition.classList.contains('enter')) {
+          transition.classList.add('block-animate');
+          setTimeout(() => {
+            transition.classList.remove('enter', 'block-animate');
+            transition.style.display = 'none';
+          }, 1000);
+        }
+      }, 100);
+  
+      // Exit animation (blocks slide downward)
+      document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (
+          href &&
+          !href.startsWith('#') &&
+          !href.startsWith('mailto:') &&
+          !href.startsWith('http')
+        ) {
+          link.addEventListener('click', e => {
+            e.preventDefault();
+  
+            transition.style.display = 'flex';
+            transition.classList.remove('block-animate'); // reset
+            void transition.offsetWidth; // force reflow
+            transition.classList.add('animate');
+  
+            setTimeout(() => {
+              window.location.href = href;
+            }, 700);
+          });
+        }
+      });
+  
+      // Resume tab switching
+      window.showSection = function (sectionId) {
         document.querySelectorAll('.resume-section').forEach(sec => {
-            sec.classList.remove('visible');
+          sec.classList.remove('visible');
         });
         document.getElementById(sectionId).classList.add('visible');
-    
+  
         document.querySelectorAll('.tab-button').forEach(btn => {
-            btn.classList.remove('active');
+          btn.classList.remove('active');
         });
         const activeBtn = Array.from(document.querySelectorAll('.tab-button'))
-            .find(btn => btn.textContent.trim().toLowerCase() === sectionId);
+          .find(btn => btn.textContent.trim().toLowerCase() === sectionId);
         if (activeBtn) activeBtn.classList.add('active');
-        }
-  </script>  
+      };
+    });
+  </script>
+  
+</body>
 </html>

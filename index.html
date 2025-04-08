@@ -28,11 +28,11 @@
   
   <main class="main-content">
     <section class="intro">
-      <h1>Hi, I'm Jodie! 👋</h1>
+      <h1>Hi, I'm Jodie! <span class="wave">👋</span></h1>
       <p>
         I'm passionate about emerging technology and cybersecurity, with a knack for turning ideas into real-world solutions through code. Using a range of programming languages and frameworks, I enjoy building projects that are both innovative and impactful.
       </p>
-      <div class = "buttons">
+      <div class="buttons">
         <a href="resume.pdf" download class="btn">
             <i class="bi bi-download"></i> Download Resume
         </a>          
@@ -42,43 +42,105 @@
         <div id="emailFallbackModal" class="modal">
           <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <p>Reach out to me at: <strong>jodielimzhuoying@gmail.com</strong></p>
+            <p>
+              Reach out to me at: 
+              <strong id="emailText">jodielimzhuoying@gmail.com</strong>
+              <i class="bi bi-clipboard" id="copyIcon" title="Copy email" style="cursor:pointer; margin-left: 0.5rem;"></i>
+            </p>            
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- ✅ Page transition blocks (entry + exit) -->
+  <div class="page-transition enter">
+    <div class="block block1"></div>
+    <div class="block block2"></div>
+    <div class="block block3"></div>
+    <div class="block block4"></div>
+    <div class="block block5"></div>
+  </div>
+
+  <!-- ✅ JavaScript -->
   <script>
-    // Get elements for email fallback
-    const emailLink = document.getElementById('emailLink');
-    const modal = document.getElementById('emailFallbackModal');
-    const closeBtn = document.querySelector('.close-btn');
+    document.addEventListener('DOMContentLoaded', () => {
+      const transition = document.querySelector('.page-transition');
   
-    // Intercept click event on email link
-    emailLink.addEventListener('click', function(event) {
-      // Attempt to open mailto link
-      window.location.href = emailLink.href;
-  
-      // Set a fallback timer (1 second) to show modal if nothing happens
+      // Page entry animation
       setTimeout(() => {
-        modal.style.display = 'block';
-      }, 2000);
+        if (transition.classList.contains('enter')) {
+          transition.classList.add('block-animate');
+          setTimeout(() => {
+            transition.classList.remove('enter', 'block-animate');
+            transition.style.display = 'none'; // hide after entry
+          }, 1000);
+        }
+      }, 100);
   
-      event.preventDefault();
-    });
+      // Page exit animation on link click
+      document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (
+          href &&
+          !href.startsWith('#') &&
+          !href.startsWith('mailto:') &&
+          !href.startsWith('http')
+        ) {
+          link.addEventListener('click', e => {
+            e.preventDefault();
   
-    // Close modal on clicking close button
-    closeBtn.addEventListener('click', function() {
-      modal.style.display = 'none';
-    });
+            // Restore display & reset animation state
+            transition.style.display = 'flex';
+            transition.classList.remove('block-animate');
+            void transition.offsetWidth; // force reflow
   
-    // Optionally close modal when clicking outside modal content
-    window.addEventListener('click', function(event) {
-      if (event.target == modal) {
+            // Trigger exit animation
+            transition.classList.add('animate');
+  
+            setTimeout(() => {
+              window.location.href = href;
+            }, 700); // match transition time
+          });
+        }
+      });
+  
+      // Email modal logic
+      const emailLink = document.getElementById('emailLink');
+      const modal = document.getElementById('emailFallbackModal');
+      const closeBtn = document.querySelector('.close-btn');
+  
+      emailLink.addEventListener('click', function(event) {
+        window.location.href = emailLink.href;
+        setTimeout(() => {
+          modal.style.display = 'block';
+        }, 2000);
+        event.preventDefault();
+      });
+  
+      closeBtn.addEventListener('click', function() {
         modal.style.display = 'none';
-      }
+      });
+  
+      window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      });
+  
+      // Copy to clipboard
+      const copyIcon = document.getElementById("copyIcon");
+      const emailText = document.getElementById("emailText");
+  
+      copyIcon.addEventListener("click", function () {
+        navigator.clipboard.writeText(emailText.textContent).then(() => {
+          copyIcon.classList.replace("bi-clipboard", "bi-clipboard-check");
+          setTimeout(() => {
+            copyIcon.classList.replace("bi-clipboard-check", "bi-clipboard");
+          }, 2000);
+        });
+      });
     });
-  </script>
+  </script>  
 </body>
 </html>

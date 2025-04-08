@@ -29,63 +29,111 @@
       <div class="education-list">
 
         <div class="education-card" onclick="toggleDetails(this)">
-            <div class="education-header">
-              <h2>National University of Singapore</h2>
-              <i class="bi bi-chevron-down read-more-icon"></i>
-            </div>
-            <p>B.Comp in Information Security (2023 - Present)</p>
-            <div class="education-details">
-                <ul>
-                    <li>Relevant Modules: Computer Security, Operating Systems, Computer Networks, Software Engineering, 
-                      Data Structures and Algorithm, Linear Algebra for Computing, Digital Ethics and Data Privacy
-                    </li>
-                    <li>Activities: Residential College 4, Tennis, Arts</li>
-                    <li>Focus: Cybersecurity</li>
-                </ul>
-            </div>
+          <div class="education-header">
+            <h2>National University of Singapore</h2>
+            <i class="bi bi-chevron-down read-more-icon"></i>
           </div>
+          <p>B.Comp in Information Security (2023 - Present)</p>
+          <div class="education-details">
+            <ul>
+              <li>Relevant Modules: Computer Security, Operating Systems, Computer Networks, Software Engineering, 
+                Data Structures and Algorithm, Linear Algebra for Computing, Digital Ethics and Data Privacy</li>
+              <li>Activities: Residential College 4, Tennis</li>
+              <li>Focus: Cybersecurity</li>
+            </ul>
+          </div>
+        </div>
 
         <div class="education-card" onclick="toggleDetails(this)">
-            <div class="education-header">
-              <h2>Nanyang Junior College</h2>
-              <i class="bi bi-chevron-down read-more-icon"></i>
-            </div>
-            <p>A-Levels (2021 - 2022)</p>
-            <div class="education-details">
-                <ul>
-                    <li>Subjects: H2 Math, H2 Physics, H2 Economics, H1 Chemistry, General Paper, Project Work</li>
-                    <li>Achievements: Edusave Merit Bursary Award 2021</li>
-                    <li>Activities: Tennis, Orientation Group Leader, Volunteering for Elderly and Migrant Workers</li>
-                  </ul>
-            </div>
+          <div class="education-header">
+            <h2>Nanyang Junior College</h2>
+            <i class="bi bi-chevron-down read-more-icon"></i>
           </div>
-
-          <div class="education-card" onclick="toggleDetails(this)">
-            <div class="education-header">
-              <h2>Bukit Panjang Government High School</h2>
-              <i class="bi bi-chevron-down read-more-icon"></i>
-            </div>
-            <p>O-Levels (2017 - 2020)</p>
-            <div class="education-details">
-                <ul>
-                    <li>Subjects: Physics, Chemistry, Additional Math., Elementary Math., History, 
-                        Social Studies, English Literature, Higher Chinese</li>
-                    <li>Leadership Positions: Head of Quartermaster (Military Band), Green Ambassador (Class)</li>
-                    <li>Achievements: Top in HSK Chinese Proficiency Test(Level 5)</li>
-                    <li>Activities: Military Band, Singapore Youth Festival(Distinction),
-                         Volunteering for Elderly and Community Centres</li>
-                  </ul>
-            </div>
+          <p>A-Levels (2021 - 2022)</p>
+          <div class="education-details">
+            <ul>
+              <li>Subjects: H2 Math, H2 Physics, H2 Economics, H1 Chemistry, General Paper, Project Work</li>
+              <li>Achievements: Edusave Merit Bursary Award 2021</li>
+              <li>Activities: Tennis, Orientation Group Leader, Volunteering for Elderly and Migrant Workers</li>
+            </ul>
           </div>
-
         </div>
+
+        <div class="education-card" onclick="toggleDetails(this)">
+          <div class="education-header">
+            <h2>Bukit Panjang Government High School</h2>
+            <i class="bi bi-chevron-down read-more-icon"></i>
+          </div>
+          <p>O-Levels (2017 - 2020)</p>
+          <div class="education-details">
+            <ul>
+              <li>Subjects: Physics, Chemistry, Additional Math., Elementary Math., History, 
+                Social Studies, English Literature, Higher Chinese</li>
+              <li>Leadership Positions: Head of Quartermaster (Military Band), Green Ambassador (Class)</li>
+              <li>Achievements: Top in HSK Chinese Proficiency Test(Level 5)</li>
+              <li>Activities: Military Band, Singapore Youth Festival (Distinction), Volunteering for Elderly and Community Centres</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
-</body>
-<script>
+
+  <!-- Page transition (entry + exit) -->
+  <div class="page-transition enter">
+    <div class="block block1"></div>
+    <div class="block block2"></div>
+    <div class="block block3"></div>
+    <div class="block block4"></div>
+    <div class="block block5"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const transition = document.querySelector('.page-transition');
+  
+      // Entry animation (blocks slide up and disappear)
+      setTimeout(() => {
+        if (transition.classList.contains('enter')) {
+          transition.classList.add('block-animate');
+          setTimeout(() => {
+            transition.classList.remove('enter', 'block-animate');
+            transition.style.display = 'none';
+          }, 1000);
+        }
+      }, 100);
+  
+      // Exit animation (blocks slide down before navigation)
+      document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (
+          href &&
+          !href.startsWith('#') &&
+          !href.startsWith('mailto:') &&
+          !href.startsWith('http')
+        ) {
+          link.addEventListener('click', e => {
+            e.preventDefault();
+  
+            // Reset transition and show
+            transition.style.display = 'flex';
+            transition.classList.remove('block-animate');
+            void transition.offsetWidth; // force reflow
+  
+            transition.classList.add('animate');
+            setTimeout(() => {
+              window.location.href = href;
+            }, 700);
+          });
+        }
+      });
+    });
+  
+    // Expandable education cards
     function toggleDetails(card) {
       card.classList.toggle("active");
     }
-</script>  
+  </script>  
+</body>
 </html>

@@ -24,21 +24,19 @@
 
   <main class="main-content projects-page">
     <section class="intro">
-    <h1>My Projects</h1>
-  
-    <div class="project-slide visible">
+      <h1>My Projects</h1>
+
+      <!-- Project Slides -->
+      <div class="project-slide visible">
         <div class="project-content">
           <div class="project-text">
             <h2>ShortcAt - Hack&Roll 2024</h2>
-            <p style="text-align: justify;">We built a game, targetted at elderly and children to teach them 
-                about keyboard shortcuts on Windows. 
-                <br><br>
-                Features:<br> 
-                - Tutorial which has the UI of a computer screen<br>
-                - Typeracer style competition allowing users to compete who is best at shortcuts
-                <br><br>
-                Used:<br>
-                - Python, JavaScript, HTML, CSS, Websockets
+            <p>We built a game, targeted at elderly and children to teach them about keyboard shortcuts on Windows.<br><br>
+              Features:<br>
+              - Tutorial with a computer screen UI<br>
+              - Typeracer-style shortcut competition<br><br>
+              Used:<br>
+              - Python, JavaScript, HTML, CSS, Websockets
             </p>
             <a href="https://github.com/jodielzy/hacknroll2025" target="_blank">View on GitHub</a>
           </div>
@@ -59,22 +57,19 @@
           <button class="nav-arrow" onclick="changeProject(-1)">&#8592;</button>
           <button class="nav-arrow" onclick="changeProject(1)">&#8594;</button>
         </div>
-    </div>
-      
-    <div class="project-slide visible">
+      </div>
+
+      <div class="project-slide visible">
         <div class="project-content">
           <div class="project-text">
             <h2>SwiftSurf - PSA CodeSprint 2024</h2>
-            <p style="text-align: justify;">We built a portal that keeps track of vessels locations and predicts the arrival time
-                of vessels at PSA ports, considering different factors such as weather conditions and social unrest.
-                <br><br>
-                Features:<br> 
-                - Vessel-to-Port Data Exchange to keep track of arrival timings<br>
-                - Port-to-Port Communication to predict the status of vessels<br>
-                - Berth Allocation portal to optimize the process of allocation berths to arriving vessels 
-                <br><br>
-                Used:<br>
-                - Flask, OpenWeather API, Pandas, Geopy
+            <p>Portal to track vessel locations and predict arrivals at PSA ports using external data.<br><br>
+              Features:<br>
+              - Vessel-to-Port tracking<br>
+              - Port-to-Port forecasting<br>
+              - Berth Allocation Portal<br><br>
+              Used:<br>
+              - Flask, OpenWeather API, Pandas, Geopy
             </p>
             <a href="https://github.com/jodielzy/PSA-CodeSprint" target="_blank">View on GitHub</a>
           </div>
@@ -97,7 +92,7 @@
           <button class="nav-arrow" onclick="changeProject(-1)">&#8592;</button>
           <button class="nav-arrow" onclick="changeProject(1)">&#8594;</button>
         </div>
-    </div>
+      </div>
 
     <div class="project-slide visible">
         <div class="project-content">
@@ -202,41 +197,129 @@
         </div>
     </div>
 
-    </div>
-  </main>  
-</body>
-    <script>
-        let currentProject = 0;
-        const slides = document.querySelectorAll(".project-slide");
-    
-        function showProject(index) {
+  </section>
+</main>
+
+  <!-- Page transition animation block -->
+  <div class="page-transition enter">
+    <div class="block block1"></div>
+    <div class="block block2"></div>
+    <div class="block block3"></div>
+    <div class="block block4"></div>
+    <div class="block block5"></div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const transition = document.querySelector('.page-transition');
+  
+      // Entry animation
+      setTimeout(() => {
+        if (transition.classList.contains('enter')) {
+          transition.classList.add('block-animate');
+          setTimeout(() => {
+            transition.classList.remove('enter', 'block-animate');
+            transition.style.display = 'none';
+          }, 1000);
+        }
+      }, 100);
+  
+      // Exit animation
+      document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (
+          href &&
+          !href.startsWith('#') &&
+          !href.startsWith('mailto:') &&
+          !href.startsWith('http')
+        ) {
+          link.addEventListener('click', e => {
+            e.preventDefault();
+            transition.style.display = 'flex';
+            transition.classList.remove('block-animate');
+            void transition.offsetWidth;
+            transition.classList.add('animate');
+            setTimeout(() => {
+              window.location.href = href;
+            }, 700);
+          });
+        }
+      });
+  
+      // Auto-rotating image carousel with pause + resume
+      const galleries = document.querySelectorAll(".project-gallery");
+  
+      galleries.forEach(gallery => {
+        const images = gallery.querySelectorAll('.carousel-img');
+        const dots = gallery.querySelectorAll('.dot');
+        let current = 0;
+        let autoRotate = true;
+        let idleTimer;
+  
+        if (images.length <= 1) return;
+  
+        function rotate() {
+          if (!autoRotate) return;
+          images[current].classList.remove('active');
+          if (dots.length > 0) dots[current].classList.remove('active');
+          current = (current + 1) % images.length;
+          images[current].classList.add('active');
+          if (dots.length > 0) dots[current].classList.add('active');
+        }
+  
+        setInterval(rotate, 2000);
+  
+        function restartAutoRotate() {
+          clearTimeout(idleTimer);
+          idleTimer = setTimeout(() => {
+            autoRotate = true;
+          }, 10000); // 10 seconds
+        }
+  
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            autoRotate = false;
+            images[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            current = index;
+            images[current].classList.add('active');
+            dots[current].classList.add('active');
+            restartAutoRotate();
+          });
+        });
+      });
+  
+      // Project switching logic
+      let currentProject = 0;
+      const slides = document.querySelectorAll(".project-slide");
+  
+      function showProject(index) {
         slides.forEach(slide => slide.classList.remove("visible"));
         slides[index].classList.add("visible");
-        }
-    
-        function changeProject(direction) {
+      }
+  
+      window.changeProject = function (direction) {
         currentProject = (currentProject + direction + slides.length) % slides.length;
         showProject(currentProject);
-        }
-    
-        // optional: show first project on load
-        showProject(currentProject);
+      };
+  
+      window.switchImage = function(dot, index) {
+        const gallery = dot.closest('.project-gallery');
+        const images = gallery.querySelectorAll('.carousel-img');
+        const dots = gallery.querySelectorAll('.dot');
+  
+        images.forEach((img, i) => {
+          img.classList.toggle('active', i === index);
+        });
+  
+        dots.forEach((d, i) => {
+          d.classList.toggle('active', d === dot);
+        });
+      };
+  
+      showProject(currentProject);
+    });
   </script>  
+</body>
 </html>
-
-<script>
-    function switchImage(dot, index) {
-      const gallery = dot.closest('.project-gallery');
-      const images = gallery.querySelectorAll('.carousel-img');
-      const dots = gallery.querySelectorAll('.dot');
-  
-      images.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-      });
-  
-      dots.forEach((d, i) => {
-        d.classList.toggle('active', d === dot);
-      });
-    }
-</script>
-  
