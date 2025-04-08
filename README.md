@@ -33,7 +33,6 @@ Welcome to my personal portfolio website! This is a fully responsive and interac
 
 - **Icons:** [Bootstrap Icons](https://icons.getbootstrap.com/)  
 - **Fonts:** [Google Fonts – Poppins](https://fonts.google.com/specimen/Poppins)  
-- **Background Image:** (Add image source or state if it’s your own design)  
 
 ---
 
