@@ -32,7 +32,8 @@ Welcome to my personal portfolio website! This is a fully responsive and interac
 ## 🧠 Credits
 
 - **Icons:** [Bootstrap Icons](https://icons.getbootstrap.com/)  
-- **Fonts:** [Google Fonts – Poppins](https://fonts.google.com/specimen/Poppins)  
+- **Fonts:** [Google Fonts – Poppins](https://fonts.google.com/specimen/Poppins)
+- **Background Image:** [Wallpaper Flare](https://www.wallpaperflare.com/nature-landscape-trees-grass-field-mountains-snowy-peak-wallpaper-yfctp)
 
 ---
 
