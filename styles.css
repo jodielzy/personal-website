@@ -416,3 +416,39 @@ body {
   60% { transform: rotate(0deg); }
   100% { transform: rotate(0deg); }
 }
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 2rem 1rem;
+  }
+
+  .resume-container {
+    flex-direction: column;
+  }
+
+  .project-content {
+    flex-direction: column;
+  }
+
+  .project-gallery,
+  .project-text {
+    flex: 1 1 100%;
+  }
+
+  .carousel-images {
+    height: 180px;
+    width: 250px;
+  }
+
+  .modal-content {
+    margin: 30% auto;
+    width: 90%;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
